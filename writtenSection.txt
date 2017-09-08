@@ -2,27 +2,93 @@ Answer each question in a written format
 
 1. What does semantic HTML mean?
 
+Semantic HTML is where you are using tags that have implied meanings to them - a <p></p> tag is a paragraph and is a way of standardizing code and making it more readable. A <b> tag for example would not be considered semantic since it only effects the looks of the page but doesnt not imply a use for what it was applied to.
+
 2. What is the box model?
+
+The box model is the diagram designers and browsers use to show where the margins, padding, and content of an item in HTML sits. In many browsers the diagram depicts margins as orange/brown, padding as green, and the content as blue- meaning you can at a glance see what is causing specific content to be in the location it is.
 
 3. What is the difference between IDs and Classes?
 
+IDs are selected using a '#' while classes are selected using a '.' in css. The functional difference of the two is that a class can effect multiple elements that have been assigned that class, while an ID typically is selecting one specific element.
+
+On that note, the specificity of IDs and Classes are significantly different as well, where if there is a conflict between the styling of a class and an ID, you the browser will prioritize the ID's styling first.
+
 4. What does the z-index do?
+
+z-index is essentially the "layer" your content sits on in the browser. 
+
+By changing the z-index to a negative number (eg -20) you will put that content behind content that has the default z-index of 0. 
+
+If you set an element to have a z-index of a positive number (eg 20) you will be setting that element to layer over the other content the page is providing.
+
+This is because all elements have a default z-index value of 'auto' which it continuously inherits from it's parents until it hits the html tag which has a default of 0.
+
+This also has the reprecussions of changing the z-index for an element, essentially changes it for all children, grandchildren, ect, of that same element.
 
 5. Summarize what the keyword 'this' is used for?
 
+'this' is a contexually used keyword in javascript that is used primarily in objects to select itself, used particularly often inside of functions within an object, or functions that have been bound to an object
+
+This allows a function to access the content of an object that otherwise may be out of scope and to manipulate or retrieve data via that method.
+
 6. What is a callback?
 
+A callback function, is a function that is passed as an argument when invoking another function. It is given that name because at some point in time it is expected to be "called back".
+
+This is useful when you need to call a function that may not be within your current functions scope, or when you want to keep things self contained for cleaner code.
+
 7. What is a closure?
+A closure is function that keeps track of a parent functions variable, after the parent has already returned. 
+
+Since they track the parent function variables by reference and not value, there is a level of persistence that is kept, while allowing it to be manipulated by changing the original parent variable.
 
 8. How does prototype work?
 
+Prototypes are functions set to a data type in javascript. 
+They are custom made functions that can be invoked with the .functionName() syntax much like traditional functions, but are able to persist throughout multiple scopes allowing for wide spread use within an application.
+
+There is a danger to creating prototype functions in that you may overwrite another developers function should they have set the same name as you, or should you name it the same name as a normally reserved expression. This means you and any others working on the same project would lose access to the normally standard expression.
+
 9. What is MVC?
+
+The model view controller system.
+
+The model is the underlying logic within a program - it does not contain much if any data about the user interface, but instead is to handle any and all logic or calculations needing to be done within a project. In angularJS the 'model' is mostly represented in the service files.
+
+The view is what the user is constantly interacting with - it handles the vast majority of the user interface and can be manipulated upon user input for interactivity between the application and the user.
+
+The controller is the pipeline between the model and view, as the user makes changes any calculations that are needed are passed through the controller to the model to be manipulated and changed, before being passed back through the controller back to the user. The controller is what allows users to have a seamless experience all while they constantly are changing and adding data to be manipulated.
 
 10. What is the component lifecycle?
 
+A component in React is essentially a giant loop that constantly checks for changes and upon a change updates itself. This is best described as a component lifestyle.
+
+The cycle goes from:
+updating any properties being passed
+component is about to receive properties
+check if any new properties were passed
+the component prepares to update with any new data
+render time - the component updates populating based on any new data passed into it
+the component finished updating and does and post-update changes that are required
+
 11. What is REST?
+REST stands for Representational State Transfer.
+
+It is a form of programming that relies on a stateless communications protocol and relies on the HTTP transfering methods, often used when building APIs as a way for calls to be standard accross the industry.
+
+RESTful apis generally leverage the use of 'Get', 'Put', 'Post', and 'Delete' requests as the standard method of receiving and changing data from the server.
 
 12. Name three ways of getting data from the URL using express
+
+    A standard get requests
+    app.get('/url/api/get', controller.getThing);
+
+    Get with a query(same as below but the url will have a ?var="queryData" at the end)
+
+    Get with an id
+    app.get('/url/api/get/:id', controller.getThingById);
+
 
 create table users (
 id serial,
@@ -33,9 +99,14 @@ email varchar(255)
 12. Given the Schema above, write the following four basic CRUD db queries using postgres syntax
 
 -Get all users:
+SELECT * FROM users;
 
 -Create a new user with the name of 'your name' and an email of 'fake@fake.com':
+INSERT_INTO users (name, email)
+VALUES('your name', 'fake@fake.com');
 
 -Update the newly created user's name to 'Bobby Boy':
+UPDATE users SET name = 'Bobby Boy' WHERE email = 'fake@fake.com';
 
 -Delete the newly updated user:
+DELETE FROM users WHERE email = "fake@fake.com';
